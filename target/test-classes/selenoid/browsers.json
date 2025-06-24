@@ -1,0 +1,55 @@
+{
+    "chrome": {
+        "default": "128.0",
+        "versions": {
+            "127.0": {
+                "image": "selenoid/chrome:127.0",
+                "port": "4444",
+                "path": "/",
+                "tmpfs": {"/tmp": "size=512m"},
+                "env": ["SE_NODE_MAX_SESSIONS=5", "SE_NODE_SESSION_TIMEOUT=5m"],
+                "volumes": ["/dev/shm:/dev/shm"],
+                "vncAllowLoopback": true,
+                "enableVNC": true,
+                "enableVideo": false
+            },
+            "128.0": {
+                "image": "selenoid/chrome:128.0",
+                "port": "4444",
+                "path": "/",
+                "tmpfs": {"/tmp": "size=512m"},
+                "env": ["SE_NODE_MAX_SESSIONS=5", "SE_NODE_SESSION_TIMEOUT=5m"],
+                "volumes": ["/dev/shm:/dev/shm"],
+                "vncAllowLoopback": true,
+                "enableVNC": true,
+                "enableVideo": false
+            }
+        }
+    },
+"firefox": {
+    "default": "125.0",
+    "versions": {
+        "124.0": {
+            "image": "selenoid/firefox:124.0",
+            "port": "4444",
+            "path": "/wd/hub",
+            "volumes": ["/dev/shm:/dev/shm"],
+            "tmpfs": {"/tmp": "size=512m"},
+            "env": ["SE_NODE_MAX_SESSIONS=5", "SE_NODE_SESSION_TIMEOUT=5m"],
+            "vncAllowLoopback": true,
+            "enableVNC": true,
+            "enableVideo": false
+        },
+        "125.0": {
+            "image": "selenoid/firefox:125.0",
+            "port": "4444",
+            "path": "/wd/hub",
+            "tmpfs": {"/tmp": "size=512m"},
+            "env": ["SE_NODE_MAX_SESSIONS=5", "SE_NODE_SESSION_TIMEOUT=5m"],
+            "vncAllowLoopback": true,
+            "enableVNC": true,
+            "enableVideo": false
+        }
+    }
+}
+}

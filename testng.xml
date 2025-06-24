@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Selenoid Suite" parallel="tests" thread-count="2">
+
+    <test name="Chrome127 Test" parallel="methods" thread-count="1">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="version" value="127.0"/>
+        <classes>
+            <class name="SelenoidTest"/>
+        </classes>
+    </test>
+    <test name="Chrome128 Test" parallel="methods" thread-count="1">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="version" value="128.0"/>
+        <classes>
+            <class name="SelenoidTest"/>
+        </classes>
+    </test>
+
+    <test name="Firefox124 Test" parallel="methods" thread-count="1">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="version" value="124.0"/>
+        <classes>
+            <class name="SelenoidTest"/>
+        </classes>
+    </test>
+    <test name="Firefox125 Test" parallel="methods" thread-count="1">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="version" value="125.0"/>
+        <classes>
+            <class name="SelenoidTest"/>
+        </classes>
+    </test>
+</suite>

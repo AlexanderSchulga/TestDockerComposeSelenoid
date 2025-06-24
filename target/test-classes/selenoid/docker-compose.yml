@@ -1,0 +1,46 @@
+version: '3'
+services:
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    container_name: selenoid-1
+    ports:
+      - "4444:4444"
+    volumes:
+      - "./browsers.json:/etc/selenoid/browsers.json"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./video:/opt/selenoid/video"
+      - "./logs:/opt/selenoid/logs"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=/opt/selenoid/video
+    command: [
+      "-limit", "10",
+      "-timeout", "5m",
+      "-conf", "/etc/selenoid/browsers.json",
+      "-container-network", "selenoid_selenoid-net",
+      "-session-attempt-timeout", "2m",
+      "-service-startup-timeout", "2m",
+      "-video-recorder-image", "selenoid/video-recorder:latest-release",
+      "-video-output-dir", "/opt/selenoid/video"
+    ]
+    networks:
+      - selenoid-net
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest-release
+    container_name: selenoid-ui
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./video:/opt/selenoid/video"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+    depends_on:
+      - selenoid
+    networks:
+      - selenoid-net
+
+networks:
+  selenoid-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "192.168.90.0/24"
